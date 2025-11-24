@@ -9,7 +9,7 @@
         <img src="/images/Logo_Full_Escrito_Vermelho.png" alt="Casa da Batian Logo" class="hero-logo">
         <p class="hero-subtitle">Autêntica Produtos e Culinária Japonesa</p>
       </div>
-      <button class="cta-button" @click="scrollToMenu">Ver Cardápio</button>
+      <button class="cta-button" @click="scrollToMenu">Ver Exclusividades</button>
     </div>
     <div class="scroll-indicator">
       <span></span>
@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 const scrollToMenu = () => {
-  document.getElementById('cardapio')?.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('pratos')?.scrollIntoView({ behavior: 'smooth' });
 };
 </script>
 

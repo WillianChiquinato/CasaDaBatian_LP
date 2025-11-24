@@ -3,55 +3,64 @@
     <div class="container">
       <h2 class="section-title">Siga-nos no Instagram</h2>
       <p class="section-subtitle">@casadabatianmercadao</p>
-      
-      <div class="carousel-container">
-        <button class="carousel-button prev" @click="prevSlide" aria-label="Anterior">
-          ‹
-        </button>
-        
-        <div class="carousel-wrapper">
-          <div 
-            class="carousel-track" 
-            :style="{ transform: `translateX(-${currentSlide * slideWidth}%)` }"
+
+      <div class="carousel-container" @mouseenter="stopAutoplay" @mouseleave="startAutoplay">
+        <button class="carousel-button prev" @click="prevSlide" aria-label="Anterior">‹</button>
+
+        <div class="carousel-wrapper" ref="wrapper">
+          <div
+            class="carousel-track"
+            :style="{ transform: `translateX(-${currentSlide * slideWidth}%)`, transition: transitioning ? 'transform 400ms ease' : 'none' }"
           >
-            <div 
-              v-for="(post, index) in posts" 
-              :key="index" 
+            <div
+              v-for="(post, idx) in visibleSlides"
+              :key="post.id ?? `placeholder-${idx}`"
               class="instagram-post"
+              :aria-hidden="!isPostVisible(idx)"
             >
-              <a :href="post.link" target="_blank" rel="noopener noreferrer" class="post-link">
+              <a
+                v-if="post.link"
+                :href="post.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="post-link"
+              >
                 <div class="post-image-container">
-                  <img :src="post.image" :alt="post.alt" class="post-image">
+                  <img
+                    v-if="post.image"
+                    :src="post.image"
+                    :alt="post.alt || 'Instagram post'"
+                    class="post-image"
+                    loading="lazy"
+                  />
+                  <div v-else class="placeholder-image">Sem imagem</div>
+
                   <div class="post-overlay">
                     <div class="post-stats">
-                      <span class="stat">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                        </svg>
-                        {{ post.likes }}
+                      <span class="stat" v-if="post.likes !== undefined">
+                        ❤️ {{ post.likes }}
                       </span>
-                      <span class="stat">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-                        </svg>
-                        {{ post.comments }}
+                      <span class="stat" v-if="post.comments !== undefined">
+                        💬 {{ post.comments }}
                       </span>
                     </div>
                   </div>
                 </div>
               </a>
+
+              <div v-else class="post-image-container">
+                <img :src="post.image || placeholderImage" :alt="post.alt || 'placeholder'" class="post-image" loading="lazy"/>
+              </div>
             </div>
           </div>
         </div>
-        
-        <button class="carousel-button next" @click="nextSlide" aria-label="Próximo">
-          ›
-        </button>
+
+        <button class="carousel-button next" @click="nextSlide" aria-label="Próximo">›</button>
       </div>
-      
+
       <div class="carousel-dots">
-        <button 
-          v-for="(_, index) in totalSlides" 
+        <button
+          v-for="(dot, index) in totalSlides"
           :key="index"
           class="dot"
           :class="{ active: currentSlide === index }"
@@ -59,10 +68,10 @@
           :aria-label="`Ir para slide ${index + 1}`"
         ></button>
       </div>
-      
-      <a 
-        href="https://instagram.com/casadabatianmercadao" 
-        target="_blank" 
+
+      <a
+        href="https://instagram.com/casadabatianmercadao"
+        target="_blank"
         rel="noopener noreferrer"
         class="follow-button"
       >
@@ -73,107 +82,55 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { fetchInstaPosts } from '../Services/InstagramService';
 
+const posts = ref<any[]>([]);
 const currentSlide = ref(0);
+const transitioning = ref(true);
 const slideWidth = ref(100);
-let autoplayInterval: number;
+const autoplayInterval = ref<number | null>(null);
+const wrapper = ref<HTMLElement | null>(null);
 
-const posts = [
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Sushi fresco',
-    likes: '2.5k',
-    comments: '150',
-    link: 'https://instagram.com/p/exemplo1'
-  },
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Hot Roll especial',
-    likes: '3.1k',
-    comments: '200',
-    link: 'https://instagram.com/p/exemplo2'
-  },
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Sashimi premium',
-    likes: '2.8k',
-    comments: '175',
-    link: 'https://instagram.com/p/exemplo3'
-  },
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Combinado especial',
-    likes: '4.2k',
-    comments: '320',
-    link: 'https://instagram.com/p/exemplo4'
-  },
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Temaki delicioso',
-    likes: '1.9k',
-    comments: '120',
-    link: 'https://instagram.com/p/exemplo5'
-  },
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Ambiente aconchegante',
-    likes: '3.5k',
-    comments: '250',
-    link: 'https://instagram.com/p/exemplo6'
-  },
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Ambiente aconchegante',
-    likes: '3.5k',
-    comments: '250',
-    link: 'https://instagram.com/p/exemplo6'
-  },
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Ambiente aconchegante',
-    likes: '3.5k',
-    comments: '250',
-    link: 'https://instagram.com/p/exemplo6'
-  },
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Ambiente aconchegante',
-    likes: '3.5k',
-    comments: '250',
-    link: 'https://instagram.com/p/exemplo6'
-  },
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Ambiente aconchegante',
-    likes: '3.5k',
-    comments: '250',
-    link: 'https://instagram.com/p/exemplo6'
-  },
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Ambiente aconchegante',
-    likes: '3.5k',
-    comments: '250',
-    link: 'https://instagram.com/p/exemplo6'
-  },
-  {
-    image: '/images/SushiPostInstaPlaceHolder.jpg',
-    alt: 'Ambiente aconchegante',
-    likes: '3.5k',
-    comments: '250',
-    link: 'https://instagram.com/p/exemplo6'
-  }
-];
-
-const totalSlides = computed(() => Math.ceil(posts.length / getPostsPerSlide()));
+const placeholderImage = '/images(Placeholders)/SushiPostInstaPlaceHolder.jpg';
 
 const getPostsPerSlide = () => {
-  if (window.innerWidth >= 1024) return 4;
-  if (window.innerWidth >= 768) return 3;
+  if (window.innerWidth >= 1200) return 4;
+  if (window.innerWidth >= 992) return 3;
+  if (window.innerWidth >= 768) return 2;
   return 1;
 };
 
+const postsPerSlide = ref(getPostsPerSlide());
+
+const totalSlides = computed(() => {
+  if (!posts.value.length) return 1;
+  return Math.max(1, Math.ceil(posts.value.length / postsPerSlide.value));
+});
+
+const visibleSlides = computed(() => {
+  const max = 9;
+  const data = posts.value.slice(0, max);
+  while (data.length < max) {
+    data.push({
+      id: `ph-${data.length}`,
+      image: placeholderImage,
+      alt: 'placeholder',
+    });
+  }
+  return data;
+});
+
+const isPostVisible = (index: number) => {
+  const slideIndex = Math.floor(index / postsPerSlide.value);
+  return slideIndex === currentSlide.value;
+};
+
+watch(postsPerSlide, (v) => {
+  slideWidth.value = 100 / v;
+});
+
+// ----- slide controls -----
 const nextSlide = () => {
   currentSlide.value = (currentSlide.value + 1) % totalSlides.value;
 };
@@ -183,28 +140,48 @@ const prevSlide = () => {
 };
 
 const goToSlide = (index: number) => {
-  currentSlide.value = index;
+  currentSlide.value = index % totalSlides.value;
 };
 
 const startAutoplay = () => {
-  autoplayInterval = setInterval(() => {
+  stopAutoplay();
+  autoplayInterval.value = window.setInterval(() => {
     nextSlide();
   }, 4000);
 };
 
 const stopAutoplay = () => {
-  clearInterval(autoplayInterval);
+  if (autoplayInterval.value) {
+    clearInterval(autoplayInterval.value);
+    autoplayInterval.value = null;
+  }
 };
 
-onMounted(() => {
+const onResize = () => {
+  postsPerSlide.value = getPostsPerSlide();
+  slideWidth.value = 100 / postsPerSlide.value;
+  if (currentSlide.value >= totalSlides.value) currentSlide.value = totalSlides.value - 1;
+};
+
+onMounted(async () => {
+  try {
+    const data = await fetchInstaPosts();
+    posts.value = data.slice(0, 9);
+  } catch (err) {
+    console.error('Erro ao carregar posts do Instagram:', err);
+    posts.value = [];
+  }
+
+  // configuracoes iniciais
+  postsPerSlide.value = getPostsPerSlide();
+  slideWidth.value = 100 / postsPerSlide.value;
+  window.addEventListener('resize', onResize);
   startAutoplay();
-  window.addEventListener('resize', () => {
-    slideWidth.value = 100 / getPostsPerSlide();
-  });
 });
 
 onUnmounted(() => {
   stopAutoplay();
+  window.removeEventListener('resize', onResize);
 });
 </script>
 

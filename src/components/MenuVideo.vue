@@ -1,14 +1,24 @@
 <template>
   <section id="cardapio" class="menu-video-section">
-    <video autoplay muted loop playsinline class="menu-bg-video">
-      <source src="/videos/PlaceHolderVideoIntro.mp4" type="video/mp4">
-    </video>
     <div class="menu-overlay"></div>
     <div class="menu-content">
       <h2 class="section-title">Nosso Cardápio</h2>
       <p class="section-description">
         Experimente o melhor da culinária japonesa com ingredientes frescos e receitas autênticas
       </p>
+      <div class="video">
+        <video 
+          class="menu-video" 
+          autoplay 
+          muted 
+          loop 
+          playsinline
+          controls
+        >
+          <source src="/videos/PlaceHolderVideoIntro.mp4" type="video/mp4">
+          Seu navegador não suporta a tag de vídeo.
+        </video>
+      </div>
       <div class="menu-categories">
         <div class="category-card">
           <h3>Sushi & Sashimi</h3>
@@ -23,8 +33,8 @@
           <p>Yakisoba, Temaki e muito mais</p>
         </div>
         <div class="category-card">
-          <h3>Sobremesas</h3>
-          <p>Doces tradicionais japoneses</p>
+          <h3>Especiarias</h3>
+          <p>Molhos, temperos e acompanhamentos tradicionais</p>
         </div>
       </div>
     </div>
@@ -42,36 +52,25 @@
   padding: 6rem 2rem;
 }
 
-.menu-bg-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  object-fit: cover;
-}
-
-.menu-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 2;
+.video {
+  width: 100%;
+  max-width: 800px;
+  overflow: hidden;
 }
 
 .menu-content {
   position: relative;
   z-index: 3;
-  max-width: 1400px;
   margin: 0 auto;
   text-align: center;
   color: #fff;
+}
+
+.menu-video {
+  width: 100%;
+  border-radius: 7px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 0.6px solid #dc2626;
 }
 
 .section-title {
@@ -84,7 +83,7 @@
 }
 
 .section-description {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 4rem;
   color: #e5e5e5;
   max-width: 600px;

@@ -1,7 +1,7 @@
 <template>
   <section id="pratos" class="dish-gallery">
     <div class="container">
-      <h2 class="section-title">Pratos Exclusivos</h2>
+      <h2 class="section-title">Exclusividades</h2>
       <p class="section-subtitle">Conheça nossas especialidades</p>
       
       <div class="gallery-grid">
@@ -19,9 +19,10 @@
           <div class="dish-info">
             <h3 class="dish-name">{{ dish.name }}</h3>
             <p class="dish-description">{{ dish.description }}</p>
+            <p class="dish-type">Tipo: {{ dish.type }}</p>
             <div class="dish-footer">
               <span class="dish-price">{{ dish.price }}</span>
-              <button class="order-button">Pedir Agora</button>
+              <button class="order-button">Mais Detalhes</button>
             </div>
           </div>
         </div>
@@ -37,52 +38,81 @@ const hoveredCard = ref<number | null>(null);
 
 const dishes = [
   {
-    name: 'Sashimi Premium',
-    description: 'Seleção especial de peixes frescos cortados pelo nosso sushiman, incluindo salmão, atum e peixe branco',
-    price: 'R$ 89,90',
-    image: '/images/sashimi.jpg'
-  },
-  {
-    name: 'Hot Roll Especial',
-    description: 'Roll empanado recheado com cream cheese, salmão e finalizado com molho especial da casa',
-    price: 'R$ 45,90',
-    image: '/images/hot-roll.jpg'
-  },
-  {
-    name: 'Combinado Casa Tabatiam',
-    description: '30 peças variadas incluindo sushis, sashimis e hot rolls. Perfeito para compartilhar',
-    price: 'R$ 149,90',
-    image: '/images/combinado.jpg'
-  },
-  {
-    name: 'Temaki Salmão',
-    description: 'Cone de alga nori recheado com arroz, salmão fresco, cream cheese e cebolinha',
-    price: 'R$ 28,90',
-    image: '/images/temaki.jpg'
-  },
-  {
     name: 'Yakisoba Tradicional',
     description: 'Macarrão oriental salteado com legumes frescos e proteína à sua escolha',
+    type: 'Combo',
     price: 'R$ 42,90',
-    image: '/images/yakisoba.jpg'
+    image: '/images/Yakisoba.jpg'
   },
   {
     name: 'Uramaki Filadélfia',
     description: 'Sushi invertido com salmão, cream cheese e gergelim tostado por fora',
+    type: 'Sushi',
+    price: 'R$ 45,90',
+    image: '/images/UramakiFiladelfia.jpg'
+  },
+  {
+    name: 'Uramaki Califórnia',
+    description: 'Sushi invertido com kani, abacate e pepino, coberto com gergelim',
+    type: 'Sushi',
+    price: 'R$ 29,90',
+    image: '/images/Uramaki.jpg'
+  },
+  {
+    name: 'Temaki Salmão',
+    description: 'Cone de alga nori recheado com arroz, salmão fresco, cream cheese e cebolinha',
+    type: 'Sushi',
+    price: 'R$ 28,90',
+    image: '/images/Temaki.jpg'
+  },
+  {
+    name: 'Salada Sunomono',
+    description: 'Salada refrescante de pepino com molho agridoce e gergelim',
+    type: 'Salada',
+    price: 'R$ 42,90',
+    image: '/images/Salada.jpg'
+  },
+  {
+    name: 'Oniguiri Variados',
+    description: 'Bolinhos de arroz recheados com atum, salmão ou umeboshi',
+    type: 'Sushi',
     price: 'R$ 38,90',
-    image: '/images/uramaki.jpg'
+    image: '/images/Oniguiri.jpg'
   },
   {
-    name: 'Nigiri Selection',
-    description: 'Seleção de 10 nigiris com os melhores peixes do dia sobre arroz temperado',
+    name: 'Inari Sushi',
+    description: 'Bolinho de arroz envolto em tofu frito adocicado',
+    type: 'Sushi',
     price: 'R$ 65,90',
-    image: '/images/nigiri.jpg'
+    image: '/images/InariSushi.jpg'
   },
   {
-    name: 'Gunkan Especial',
-    description: 'Navio de arroz envolto em alga nori com recheio de salmão picante',
+    name: 'Hot Roll Especial',
+    description: 'Sushi frito recheado com salmão, cream cheese e cebolinha, servido com molho especial',
+    type: 'Sushi',
     price: 'R$ 32,90',
-    image: '/images/gunkan.jpg'
+    image: '/images/HotRoll.jpg'
+  },
+  {
+    name: 'Hosso Maki de Salmão',
+    description: 'Sushi tradicional com alga nori, arroz e salmão fresco',
+    type: 'Sushi',
+    price: 'R$ 32,90',
+    image: '/images/HossomakideSalmao.jpg'
+  },
+  {
+    name: 'Futomaki Vegano',
+    description: 'Sushi grosso recheado com legumes variados e abacate',
+    type: 'Sushi',
+    price: 'R$ 32,90',
+    image: '/images/Futomaki.jpg'
+  },
+  {
+    name: 'Combo Completo',
+    description: 'Combinado com variedade de sushis e Rolls para duas pessoas',
+    type: 'Combo',
+    price: 'R$ 32,90',
+    image: '/images/ComboCompleto.jpg'
   }
 ];
 </script>
@@ -181,6 +211,12 @@ const dishes = [
   line-height: 1.6;
   margin-bottom: 1.5rem;
   min-height: 60px;
+}
+
+.dish-type {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 0.4rem;
 }
 
 .dish-footer {
