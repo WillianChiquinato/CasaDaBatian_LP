@@ -73,10 +73,10 @@ const open = ref(false);
 const selected = ref<"sobre" | "contato" | "horarios" | "endereco" | "">("");
 
 const messages = reactive({
-  sobre: "Somos um restaurante especializado em comida oriental.",
-  contato: "Telefone: (51) 99999-9999\nEmail: contato@restaurante.com",
-  horarios: "Seg a Sab: 18h às 23h.",
-  endereco: "Rua Exemplo, 123 - Centro.",
+  sobre: "Loja de produtos orientais e restaurante ao lado do Mercadão Central de Ribeirão Preto",
+  contato: "Telefone: (16) 99768-9694\nEmail: casadaatianrp@gmail.com",
+  horarios: "Seg a Sex: 07h às 18h - Sab: 07h às 16h - Dom: Fechado",
+  endereco: "R. São Sebastião, 130 - BOX 71 - Centro, Ribeirão Preto - SP",
 });
 
 function select(option: "sobre" | "contato" | "horarios" | "endereco") {
@@ -84,7 +84,7 @@ function select(option: "sobre" | "contato" | "horarios" | "endereco") {
 }
 
 function openWhatsApp() {
-  window.open("https://wa.me/5551999999999", "_blank");
+  window.open("https://wa.me/5516997689694", "_blank");
 }
 </script>
 
