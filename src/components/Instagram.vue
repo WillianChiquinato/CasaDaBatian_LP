@@ -60,12 +60,12 @@
 
       <div class="carousel-dots">
         <button
-          v-for="(dot, index) in totalSlides"
+          v-for="index in totalSlides"
           :key="index"
           class="dot"
-          :class="{ active: currentSlide === index }"
-          @click="goToSlide(index)"
-          :aria-label="`Ir para slide ${index + 1}`"
+          :class="{ active: currentSlide === index - 1 }"
+          @click="goToSlide(index - 1)"
+          :aria-label="`Ir para slide ${index}`"
         ></button>
       </div>
 
