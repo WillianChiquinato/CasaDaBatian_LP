@@ -6,7 +6,7 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="logo-container">
-        <img src="/images/Logo_Full_Escrito_Vermelho.png" alt="Casa da Batian Logo" class="hero-logo">
+        <img src="../assets/images/Logo_Full_Escrito_Vermelho.png" alt="Casa da Batian Logo" class="hero-logo">
         <p class="hero-subtitle">Autêntica Produtos e Culinária Japonesa</p>
       </div>
       <button class="cta-button" @click="scrollToMenu">Ver Exclusividades</button>

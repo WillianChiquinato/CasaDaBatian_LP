@@ -7,9 +7,9 @@
       <nav class="nav">
         <a href="#home">Home</a>
         <a href="#cardapio">Cardápio</a>
+        <a href="#localizacao">Localização</a>
         <a href="#pratos">Pratos</a>
         <a href="#instagram">Instagram</a>
-        <a href="#localizacao">Localização</a>
         <div class="iconsHeader">
           <a href="https://www.instagram.com/casadabatianmercadao" target="_blank" rel="noopener noreferrer"
             aria-label="Instagram">

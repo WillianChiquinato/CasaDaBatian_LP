@@ -84,6 +84,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 import { fetchInstaPosts } from '../Services/InstagramService';
+import placeholderImage from '../assets/SushiPostInstaPlaceHolder.jpg';
 
 const posts = ref<any[]>([]);
 const currentSlide = ref(0);
@@ -92,7 +93,7 @@ const slideWidth = ref(100);
 const autoplayInterval = ref<number | null>(null);
 const wrapper = ref<HTMLElement | null>(null);
 
-const placeholderImage = '/images(Placeholders)/SushiPostInstaPlaceHolder.jpg';
+const placeholder = placeholderImage;
 
 const getPostsPerSlide = () => {
   if (window.innerWidth >= 1200) return 4;
@@ -114,7 +115,7 @@ const visibleSlides = computed(() => {
   while (data.length < max) {
     data.push({
       id: `ph-${data.length}`,
-      image: placeholderImage,
+      image: placeholder,
       alt: 'placeholder',
     });
   }

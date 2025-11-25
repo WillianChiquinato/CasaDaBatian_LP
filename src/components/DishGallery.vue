@@ -33,6 +33,17 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import yakisoba from '../assets/images/Yakisoba.jpg'
+import uramakiFiladelfia from '../assets/images/UramakiFiladelfia.jpg'
+import uramaki from '../assets/images/Uramaki.jpg'
+import temaki from '../assets/images/Temaki.jpg'
+import salada from '../assets/images/Salada.jpg'
+import oniguiri from '../assets/images/Oniguiri.jpg'
+import inariSushi from '../assets/images/InariSushi.jpg'
+import hotRoll from '../assets/images/HotRoll.jpg'
+import hossoMaki from '../assets/images/HossomakideSalmao.jpg'
+import futomaki from '../assets/images/Futomaki.jpg'
+import comboCompleto from '../assets/images/ComboCompleto.jpg'
 
 const hoveredCard = ref<number | null>(null);
 
@@ -42,77 +53,77 @@ const dishes = [
     description: 'Macarrão oriental salteado com legumes frescos e proteína à sua escolha',
     type: 'Combo',
     price: 'R$ 42,90',
-    image: '/images/Yakisoba.jpg'
+    image: yakisoba
   },
   {
     name: 'Uramaki Filadélfia',
     description: 'Sushi invertido com salmão, cream cheese e gergelim tostado por fora',
     type: 'Sushi',
     price: 'R$ 45,90',
-    image: '/images/UramakiFiladelfia.jpg'
+    image: uramakiFiladelfia
   },
   {
     name: 'Uramaki Califórnia',
     description: 'Sushi invertido com kani, abacate e pepino, coberto com gergelim',
     type: 'Sushi',
     price: 'R$ 29,90',
-    image: '/images/Uramaki.jpg'
+    image: uramaki
   },
   {
     name: 'Temaki Salmão',
     description: 'Cone de alga nori recheado com arroz, salmão fresco, cream cheese e cebolinha',
     type: 'Sushi',
     price: 'R$ 28,90',
-    image: '/images/Temaki.jpg'
+    image: temaki
   },
   {
     name: 'Salada Sunomono',
     description: 'Salada refrescante de pepino com molho agridoce e gergelim',
     type: 'Salada',
     price: 'R$ 42,90',
-    image: '/images/Salada.jpg'
+    image: salada
   },
   {
     name: 'Oniguiri Variados',
     description: 'Bolinhos de arroz recheados com atum, salmão ou umeboshi',
     type: 'Sushi',
     price: 'R$ 38,90',
-    image: '/images/Oniguiri.jpg'
+    image: oniguiri
   },
   {
     name: 'Inari Sushi',
     description: 'Bolinho de arroz envolto em tofu frito adocicado',
     type: 'Sushi',
     price: 'R$ 65,90',
-    image: '/images/InariSushi.jpg'
+    image: inariSushi
   },
   {
     name: 'Hot Roll Especial',
     description: 'Sushi frito recheado com salmão, cream cheese e cebolinha, servido com molho especial',
     type: 'Sushi',
     price: 'R$ 32,90',
-    image: '/images/HotRoll.jpg'
+    image: hotRoll
   },
   {
     name: 'Hosso Maki de Salmão',
     description: 'Sushi tradicional com alga nori, arroz e salmão fresco',
     type: 'Sushi',
     price: 'R$ 32,90',
-    image: '/images/HossomakideSalmao.jpg'
+    image: hossoMaki
   },
   {
     name: 'Futomaki Vegano',
     description: 'Sushi grosso recheado com legumes variados e abacate',
     type: 'Sushi',
     price: 'R$ 32,90',
-    image: '/images/Futomaki.jpg'
+    image: futomaki
   },
   {
     name: 'Combo Completo',
     description: 'Combinado com variedade de sushis e Rolls para duas pessoas',
     type: 'Combo',
     price: 'R$ 32,90',
-    image: '/images/ComboCompleto.jpg'
+    image: comboCompleto
   }
 ];
 </script>
