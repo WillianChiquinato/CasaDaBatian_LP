@@ -3,15 +3,10 @@
     <div class="container">
       <h2 class="section-title">Exclusividades</h2>
       <p class="section-subtitle">Conheça nossas especialidades</p>
-      
+
       <div class="gallery-grid">
-        <div 
-          v-for="(dish, index) in dishes" 
-          :key="index" 
-          class="dish-card"
-          @mouseenter="hoveredCard = index"
-          @mouseleave="hoveredCard = null"
-        >
+        <div v-for="(dish, index) in dishes" :key="index" class="dish-card" @mouseenter="hoveredCard = index"
+          @mouseleave="hoveredCard = null">
           <div class="dish-image-container">
             <img :src="dish.image" :alt="dish.name" class="dish-image">
             <div class="dish-overlay"></div>
@@ -265,11 +260,22 @@ const dishes = [
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    letter-spacing: 1px;
   }
-  
+
   .gallery-grid {
     grid-template-columns: 1fr;
+  }
+
+  .dish-price {
+    font-size: 1.2rem;
+  }
+
+  .order-button {
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
   }
 }
 </style>

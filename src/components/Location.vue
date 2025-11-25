@@ -205,7 +205,8 @@
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    letter-spacing: 1px;
   }
 
   .map-container iframe {

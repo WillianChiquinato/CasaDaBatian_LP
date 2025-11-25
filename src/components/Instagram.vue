@@ -8,31 +8,14 @@
         <button class="carousel-button prev" @click="prevSlide" aria-label="Anterior">‹</button>
 
         <div class="carousel-wrapper" ref="wrapper">
-          <div
-            class="carousel-track"
-            :style="{ transform: `translateX(-${currentSlide * slideWidth}%)`, transition: transitioning ? 'transform 400ms ease' : 'none' }"
-          >
-            <div
-              v-for="(post, idx) in visibleSlides"
-              :key="post.id ?? `placeholder-${idx}`"
-              class="instagram-post"
-              :aria-hidden="!isPostVisible(idx)"
-            >
-              <a
-                v-if="post.link"
-                :href="post.link"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="post-link"
-              >
+          <div class="carousel-track"
+            :style="{ transform: `translateX(-${currentSlide * slideWidth}%)`, transition: transitioning ? 'transform 400ms ease' : 'none' }">
+            <div v-for="(post, idx) in visibleSlides" :key="post.id ?? `placeholder-${idx}`" class="instagram-post"
+              :aria-hidden="!isPostVisible(idx)">
+              <a v-if="post.link" :href="post.link" target="_blank" rel="noopener noreferrer" class="post-link">
                 <div class="post-image-container">
-                  <img
-                    v-if="post.image"
-                    :src="post.image"
-                    :alt="post.alt || 'Instagram post'"
-                    class="post-image"
-                    loading="lazy"
-                  />
+                  <img v-if="post.image" :src="post.image" :alt="post.alt || 'Instagram post'" class="post-image"
+                    loading="lazy" />
                   <div v-else class="placeholder-image">Sem imagem</div>
 
                   <div class="post-overlay">
@@ -49,7 +32,8 @@
               </a>
 
               <div v-else class="post-image-container">
-                <img :src="post.image || placeholderImage" :alt="post.alt || 'placeholder'" class="post-image" loading="lazy"/>
+                <img :src="post.image || placeholderImage" :alt="post.alt || 'placeholder'" class="post-image"
+                  loading="lazy" />
               </div>
             </div>
           </div>
@@ -59,22 +43,12 @@
       </div>
 
       <div class="carousel-dots">
-        <button
-          v-for="index in totalSlides"
-          :key="index"
-          class="dot"
-          :class="{ active: currentSlide === index - 1 }"
-          @click="goToSlide(index - 1)"
-          :aria-label="`Ir para slide ${index}`"
-        ></button>
+        <button v-for="index in totalSlides" :key="index" class="dot" :class="{ active: currentSlide === index - 1 }"
+          @click="goToSlide(index - 1)" :aria-label="`Ir para slide ${index}`"></button>
       </div>
 
-      <a
-        href="https://instagram.com/casadabatianmercadao"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="follow-button"
-      >
+      <a href="https://instagram.com/casadabatianmercadao" target="_blank" rel="noopener noreferrer"
+        class="follow-button">
         Seguir @casadabatianmercadao
       </a>
     </div>
@@ -385,23 +359,31 @@ onUnmounted(() => {
     flex: 0 0 100%;
     min-width: 100%;
   }
-  
+
   .section-title {
     font-size: 2rem;
   }
-  
+
   .carousel-button {
     width: 40px;
     height: 40px;
     font-size: 1.5rem;
   }
-  
+
   .carousel-button.prev {
     left: 10px;
   }
-  
+
   .carousel-button.next {
     right: 10px;
+  }
+}
+
+@media (max-width: 460px) {
+  .follow-button {
+    padding: 0.8rem 2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
   }
 }
 </style>
