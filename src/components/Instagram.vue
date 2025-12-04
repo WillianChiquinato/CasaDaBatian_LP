@@ -9,9 +9,8 @@
 
         <div class="carousel-wrapper" ref="wrapper">
           <div class="carousel-track"
-            :style="{ transform: `translateX(-${currentSlide * slideWidth}%)`, transition: transitioning ? 'transform 400ms ease' : 'none' }">
-            <div v-for="(post, idx) in visibleSlides" :key="post.id ?? `placeholder-${idx}`" class="instagram-post"
-              :aria-hidden="!isPostVisible(idx)">
+            :style="trackStyle">
+            <div v-for="(post, idx) in posts" :key="post.id ?? `placeholder-${idx}`" class="instagram-post">
               <a v-if="post.link" :href="post.link" target="_blank" rel="noopener noreferrer" class="post-link">
                 <div class="post-image-container">
                   <img v-if="post.image" :src="post.image" :alt="post.alt || 'Instagram post'" class="post-image"
@@ -56,18 +55,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { fetchInstaPosts } from '../Services/InstagramService';
 import placeholderImage from '../assets/SushiPostInstaPlaceHolder.jpg';
 
 const posts = ref<any[]>([]);
 const currentSlide = ref(0);
 const transitioning = ref(true);
-const slideWidth = ref(100);
 const autoplayInterval = ref<number | null>(null);
 const wrapper = ref<HTMLElement | null>(null);
-
-const placeholder = placeholderImage;
 
 const getPostsPerSlide = () => {
   if (window.innerWidth >= 1200) return 4;
@@ -83,26 +79,16 @@ const totalSlides = computed(() => {
   return Math.max(1, Math.ceil(posts.value.length / postsPerSlide.value));
 });
 
-const visibleSlides = computed(() => {
-  const max = 9;
-  const data = posts.value.slice(0, max);
-  while (data.length < max) {
-    data.push({
-      id: `ph-${data.length}`,
-      image: placeholder,
-      alt: 'placeholder',
-    });
-  }
-  return data;
-});
-
-const isPostVisible = (index: number) => {
-  const slideIndex = Math.floor(index / postsPerSlide.value);
-  return slideIndex === currentSlide.value;
-};
-
-watch(postsPerSlide, (v) => {
-  slideWidth.value = 100 / v;
+const trackStyle = computed(() => {
+  const wrapperWidth = wrapper.value?.offsetWidth || 0;
+  const gap = 24; // 1.5rem = 24px
+  const postWidth = (wrapperWidth - (gap * (postsPerSlide.value - 1))) / postsPerSlide.value;
+  const offset = currentSlide.value * (postWidth * postsPerSlide.value + gap * postsPerSlide.value);
+  
+  return {
+    transform: `translateX(-${offset}px)`,
+    transition: transitioning.value ? 'transform 400ms ease' : 'none'
+  };
 });
 
 // ----- slide controls -----
@@ -134,14 +120,17 @@ const stopAutoplay = () => {
 
 const onResize = () => {
   postsPerSlide.value = getPostsPerSlide();
-  slideWidth.value = 100 / postsPerSlide.value;
-  if (currentSlide.value >= totalSlides.value) currentSlide.value = totalSlides.value - 1;
+  if (currentSlide.value >= totalSlides.value) {
+    currentSlide.value = Math.max(0, totalSlides.value - 1);
+  }
 };
 
 onMounted(async () => {
   try {
     const data = await fetchInstaPosts();
-    posts.value = data.slice(0, 9);
+    posts.value = data.data || [];
+    console.log(data);
+    
   } catch (err) {
     console.error('Erro ao carregar posts do Instagram:', err);
     posts.value = [];
@@ -149,7 +138,6 @@ onMounted(async () => {
 
   // configuracoes iniciais
   postsPerSlide.value = getPostsPerSlide();
-  slideWidth.value = 100 / postsPerSlide.value;
   window.addEventListener('resize', onResize);
   startAutoplay();
 });
@@ -198,17 +186,17 @@ onUnmounted(() => {
 
 .carousel-wrapper {
   overflow: hidden;
+  width: 100%;
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.5s ease-in-out;
   gap: 1.5rem;
 }
 
 .instagram-post {
-  flex: 0 0 calc(25% - 1.125rem);
-  min-width: calc(25% - 1.125rem);
+  flex: 0 0 calc((100% - 4.5rem) / 4);
+  min-width: calc((100% - 4.5rem) / 4);
 }
 
 .post-link {
@@ -347,10 +335,17 @@ onUnmounted(() => {
   box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1199px) {
   .instagram-post {
-    flex: 0 0 calc(33.333% - 1rem);
-    min-width: calc(33.333% - 1rem);
+    flex: 0 0 calc((100% - 3rem) / 3);
+    min-width: calc((100% - 3rem) / 3);
+  }
+}
+
+@media (max-width: 991px) {
+  .instagram-post {
+    flex: 0 0 calc((100% - 1.5rem) / 2);
+    min-width: calc((100% - 1.5rem) / 2);
   }
 }
 
@@ -358,6 +353,10 @@ onUnmounted(() => {
   .instagram-post {
     flex: 0 0 100%;
     min-width: 100%;
+  }
+  
+  .carousel-track {
+    gap: 1rem;
   }
 
   .section-title {

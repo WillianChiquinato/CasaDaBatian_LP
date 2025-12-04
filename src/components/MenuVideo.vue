@@ -1,8 +1,8 @@
 <template>
-  <section id="cardapio" class="menu-video-section">
+  <section id="intro" class="menu-video-section">
     <div class="menu-overlay"></div>
     <div class="menu-content">
-      <h2 class="section-title">Nosso Cardápio</h2>
+      <h2 class="section-title">Nossa História</h2>
       <p class="section-description">
         Experimente o melhor da culinária japonesa com ingredientes frescos e receitas autênticas
       </p>

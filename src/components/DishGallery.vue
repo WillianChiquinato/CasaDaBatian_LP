@@ -1,7 +1,7 @@
 <template>
-  <section id="pratos" class="dish-gallery">
+  <section id="cardapio" class="dish-gallery">
     <div class="container">
-      <h2 class="section-title">Exclusividades</h2>
+      <h2 class="section-title">Cardápio</h2>
       <p class="section-subtitle">Conheça nossas especialidades</p>
 
       <div class="gallery-grid">
@@ -15,10 +15,6 @@
             <h3 class="dish-name">{{ dish.name }}</h3>
             <p class="dish-description">{{ dish.description }}</p>
             <p class="dish-type">Tipo: {{ dish.type }}</p>
-            <div class="dish-footer">
-              <span class="dish-price">{{ dish.price }}</span>
-              <button class="order-button">Mais Detalhes</button>
-            </div>
           </div>
         </div>
       </div>
@@ -47,77 +43,66 @@ const dishes = [
     name: 'Yakisoba Tradicional',
     description: 'Macarrão oriental salteado com legumes frescos e proteína à sua escolha',
     type: 'Combo',
-    price: 'R$ 42,90',
     image: yakisoba
   },
   {
     name: 'Uramaki Filadélfia',
     description: 'Sushi invertido com salmão, cream cheese e gergelim tostado por fora',
     type: 'Sushi',
-    price: 'R$ 45,90',
     image: uramakiFiladelfia
   },
   {
     name: 'Uramaki Califórnia',
     description: 'Sushi invertido com kani, abacate e pepino, coberto com gergelim',
     type: 'Sushi',
-    price: 'R$ 29,90',
     image: uramaki
   },
   {
     name: 'Temaki Salmão',
     description: 'Cone de alga nori recheado com arroz, salmão fresco, cream cheese e cebolinha',
     type: 'Sushi',
-    price: 'R$ 28,90',
     image: temaki
   },
   {
     name: 'Salada Sunomono',
     description: 'Salada refrescante de pepino com molho agridoce e gergelim',
     type: 'Salada',
-    price: 'R$ 42,90',
     image: salada
   },
   {
     name: 'Oniguiri Variados',
     description: 'Bolinhos de arroz recheados com atum, salmão ou umeboshi',
     type: 'Sushi',
-    price: 'R$ 38,90',
     image: oniguiri
   },
   {
     name: 'Inari Sushi',
     description: 'Bolinho de arroz envolto em tofu frito adocicado',
     type: 'Sushi',
-    price: 'R$ 65,90',
     image: inariSushi
   },
   {
     name: 'Hot Roll Especial',
     description: 'Sushi frito recheado com salmão, cream cheese e cebolinha, servido com molho especial',
     type: 'Sushi',
-    price: 'R$ 32,90',
     image: hotRoll
   },
   {
     name: 'Hosso Maki de Salmão',
     description: 'Sushi tradicional com alga nori, arroz e salmão fresco',
     type: 'Sushi',
-    price: 'R$ 32,90',
     image: hossoMaki
   },
   {
     name: 'Futomaki Vegano',
     description: 'Sushi grosso recheado com legumes variados e abacate',
     type: 'Sushi',
-    price: 'R$ 32,90',
     image: futomaki
   },
   {
     name: 'Combo Completo',
     description: 'Combinado com variedade de sushis e Rolls para duas pessoas',
     type: 'Combo',
-    price: 'R$ 32,90',
     image: comboCompleto
   }
 ];
@@ -183,6 +168,7 @@ const dishes = [
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: brightness(1.08) contrast(1.1) saturate(1.18) drop-shadow(0 4px 10px rgba(0,0,0,0.2));
   transition: transform 0.5s;
 }
 
@@ -220,23 +206,8 @@ const dishes = [
 }
 
 .dish-type {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   color: #888;
-  margin-bottom: 0.4rem;
-}
-
-.dish-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 1rem;
-  border-top: 1px solid #333;
-}
-
-.dish-price {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #dc2626;
 }
 
 .order-button {
@@ -260,8 +231,8 @@ const dishes = [
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 2rem;
-    letter-spacing: 1px;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
   }
 
   .gallery-grid {

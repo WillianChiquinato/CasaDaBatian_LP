@@ -1,8 +1,8 @@
 <template>
   <section id="home" class="hero">
-    <video autoplay muted loop playsinline class="hero-video">
+    <!-- <video autoplay muted loop playsinline class="hero-video">
       <source src="/videos/PlaceHolderVideoIntro.mp4" type="video/mp4">
-    </video>
+    </video> -->
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="logo-container">
@@ -31,6 +31,7 @@ const scrollToMenu = () => {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background-color: #c61515;
 }
 
 .hero-video {
