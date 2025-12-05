@@ -3,6 +3,10 @@
     <div class="container">
       <h2 class="section-title">Cardápio</h2>
       <p class="section-subtitle">Conheça nossas especialidades</p>
+      <a :href="ImagemCardapioUrl" target="_blank" rel="noopener noreferrer"
+        class="ticket-button">
+        Conferir Cardápio Completo
+      </a>
 
       <div class="gallery-grid">
         <div v-for="(dish, index) in dishes" :key="index" class="dish-card" @mouseenter="hoveredCard = index"
@@ -24,17 +28,20 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import yakisoba from '../assets/images/Yakisoba.jpg'
-import uramakiFiladelfia from '../assets/images/UramakiFiladelfia.jpg'
-import uramaki from '../assets/images/Uramaki.jpg'
-import temaki from '../assets/images/Temaki.jpg'
-import salada from '../assets/images/Salada.jpg'
-import oniguiri from '../assets/images/Oniguiri.jpg'
-import inariSushi from '../assets/images/InariSushi.jpg'
-import hotRoll from '../assets/images/HotRoll.jpg'
-import hossoMaki from '../assets/images/HossomakideSalmao.jpg'
-import futomaki from '../assets/images/Futomaki.jpg'
-import comboCompleto from '../assets/images/ComboCompleto.jpg'
+import yakisoba from '../assets/images/Yakisoba.png'
+import uramakiFiladelfia from '../assets/images/UramakiFiladelfia.png'
+import uramaki from '../assets/images/Uramaki.png'
+import temaki from '../assets/images/Temaki.png'
+import salada from '../assets/images/Salada.png'
+import oniguiri from '../assets/images/Oniguiri.png'
+import inariSushi from '../assets/images/InariSushi.png'
+import hotRoll from '../assets/images/HotRoll.png'
+import hossoMaki from '../assets/images/HossomakideSalmao.png'
+import futomaki from '../assets/images/Futomaki.png'
+import comboCompleto from '../assets/images/ComboCompleto.png'
+
+import ImagemCardapio from '../assets/images/CardapioPng.png';
+const ImagemCardapioUrl = ImagemCardapio;
 
 const hoveredCard = ref<number | null>(null);
 
@@ -134,7 +141,6 @@ const dishes = [
   text-align: center;
   font-size: 1.2rem;
   color: #a0a0a0;
-  margin-bottom: 4rem;
 }
 
 .gallery-grid {
@@ -162,6 +168,7 @@ const dishes = [
   width: 100%;
   height: 280px;
   overflow: hidden;
+  background-color: #480b0b;
 }
 
 .dish-image {
@@ -227,6 +234,29 @@ const dishes = [
 .order-button:hover {
   background: #b91c1c;
   transform: scale(1.05);
+}
+
+.ticket-button {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #fff;
+  padding: 0.7rem 2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  margin-top: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.ticket-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
 }
 
 @media (max-width: 768px) {

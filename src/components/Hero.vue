@@ -31,7 +31,10 @@ const scrollToMenu = () => {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: #c61515;
+  background-image: url('../assets/images/CapaHomePage.png');
+  background-size: cover;
+  background-size: auto 140%;
+  background-position: center;
 }
 
 .hero-video {
