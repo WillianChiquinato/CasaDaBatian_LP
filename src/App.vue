@@ -2,8 +2,8 @@
   <div id="app">
     <Header />
     <Hero />
-    <MenuVideo />
     <Location />
+    <MenuVideo />
     <DishGallery />
     <Instagram />
     <Footer />

@@ -58,9 +58,9 @@ const scrollToMenu = () => {
   bottom: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 0.8)
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.6)
   );
   z-index: 2;
 }
@@ -111,9 +111,9 @@ const scrollToMenu = () => {
 }
 
 .cta-button {
-  background: #dc2626;
+  background: #af0101;
   color: #fff;
-  border: 2px solid #dc2626;
+  border: 2px solid #ff4d4d;
   padding: 1rem 3rem;
   font-size: 1.1rem;
   font-weight: 600;

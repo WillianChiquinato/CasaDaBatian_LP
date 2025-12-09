@@ -2,7 +2,7 @@
   <section id="intro" class="menu-video-section">
     <div class="menu-overlay"></div>
     <div class="menu-content">
-      <h2 class="section-title">Nossa História</h2>
+      <h2 class="section-title">A mais de 50 anos nos Mercadão de Ribeirão Preto</h2>
       <p class="section-description">
         Experimente o melhor da culinária japonesa com ingredientes frescos e receitas autênticas
       </p>
@@ -56,10 +56,12 @@
   width: 100%;
   max-width: 800px;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .menu-content {
   position: relative;
+  width: 100%;
   z-index: 3;
   margin: 0 auto;
   text-align: center;
@@ -74,12 +76,19 @@
 }
 
 .section-title {
-  font-size: 3.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
-  letter-spacing: 4px;
+  letter-spacing: 1px;
   margin-bottom: 1.5rem;
   color: #dc2626;
   text-transform: uppercase;
+  line-height: 1.2;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .section-description {
@@ -129,11 +138,16 @@
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    letter-spacing: 0.5px;
   }
   
   .menu-categories {
     grid-template-columns: 1fr;
+  }
+  
+  .menu-video-section {
+    padding: 4rem 1.5rem;
   }
 }
 </style>

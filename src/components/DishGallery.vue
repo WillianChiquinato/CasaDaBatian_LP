@@ -154,12 +154,12 @@ const dishes = [
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.3s;
-  border: 1px solid transparent;
+  border: 0.7px solid #420b0b;
 }
 
 .dish-card:hover {
   transform: translateY(-10px);
-  border-color: #dc2626;
+  border: 1.5px solid #dc2626;
   box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
 }
 
@@ -168,15 +168,42 @@ const dishes = [
   width: 100%;
   height: 280px;
   overflow: hidden;
-  background-color: #480b0b;
+  background: radial-gradient(circle at 30% 50%, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%);
+  background-size: 150% 150%;
+  animation: subtle-shift 8s ease-in-out infinite;
+}
+
+.dish-image-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(220, 38, 38, 0.2) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 40%);
+  z-index: 0;
 }
 
 .dish-image {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  filter: brightness(1.08) contrast(1.1) saturate(1.18) drop-shadow(0 4px 10px rgba(0,0,0,0.2));
+  object-fit: contain;
+  filter: brightness(1.1) contrast(1.15) saturate(1.2) drop-shadow(0 8px 16px rgba(0,0,0,0.4));
   transition: transform 0.5s;
+  z-index: 1;
+  padding: 1rem;
+}
+
+@keyframes subtle-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .dish-card:hover .dish-image {
