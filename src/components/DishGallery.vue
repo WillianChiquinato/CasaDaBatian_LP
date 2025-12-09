@@ -2,11 +2,6 @@
   <section id="cardapio" class="dish-gallery">
     <div class="container">
       <h2 class="section-title">Cardápio</h2>
-      <p class="section-subtitle">Conheça nossas especialidades</p>
-      <a :href="ImagemCardapioUrl" target="_blank" rel="noopener noreferrer"
-        class="ticket-button">
-        Conferir Cardápio Completo
-      </a>
 
       <div class="gallery-grid">
         <div v-for="(dish, index) in dishes" :key="index" class="dish-card" @mouseenter="hoveredCard = index"
@@ -39,9 +34,6 @@ import hotRoll from '../assets/images/HotRoll.png'
 import hossoMaki from '../assets/images/HossomakideSalmao.png'
 import futomaki from '../assets/images/Futomaki.png'
 import comboCompleto from '../assets/images/ComboCompleto.png'
-
-import ImagemCardapio from '../assets/images/CardapioPng.png';
-const ImagemCardapioUrl = ImagemCardapio;
 
 const hoveredCard = ref<number | null>(null);
 
@@ -132,7 +124,7 @@ const dishes = [
   font-size: 3.5rem;
   font-weight: 700;
   letter-spacing: 4px;
-  margin-bottom: 1rem;
+  margin-bottom: 3.5rem;
   color: #dc2626;
   text-transform: uppercase;
 }
@@ -180,7 +172,7 @@ const dishes = [
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 80%, rgba(220, 38, 38, 0.2) 0%, transparent 60%),
     radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 40%);
   z-index: 0;
@@ -190,17 +182,20 @@ const dishes = [
   position: relative;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  filter: brightness(1.1) contrast(1.15) saturate(1.2) drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+  object-fit: cover;
+  filter: brightness(1.1) contrast(1) saturate(1.5) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
   transition: transform 0.5s;
   z-index: 1;
   padding: 1rem;
 }
 
 @keyframes subtle-shift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -284,6 +279,17 @@ const dishes = [
 .ticket-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+}
+
+@media (max-width: 960px) {
+  .dish-image {
+    object-fit: contain;
+    transform: scale(1.25);
+  }
+
+  .dish-card:hover .dish-image {
+    transform: scale(1.35);
+  }
 }
 
 @media (max-width: 768px) {

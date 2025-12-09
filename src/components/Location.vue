@@ -27,30 +27,22 @@
             <p><strong>WhatsApp:</strong> (16) 99768-9694</p>
           </div>
         </div>
-        <div class="info-card">
-          <div class="icon">🕐</div>
-          <h3>Horário de Funcionamento</h3>
-          <div class="hours">
-            <div class="divideHours">
-              <p><strong>Segunda a Sexta:</strong></p>
-              <p>07:00 - 18:00</p>
-              <p><strong>Sábados:</strong></p>
-              <p>07:00 - 16:00</p>
+        <div class="hoursContainer">
+          <div class="info-card">
+            <div class="icon">🕐</div>
+            <h3>Horário de Funcionamento</h3>
+            <div class="hours">
+              <div class="divideHours">
+                <p><strong>Segunda a Sexta:</strong></p>
+                <p>07:00 - 18:00</p>
+                <p><strong>Sábados:</strong></p>
+                <p>07:00 - 16:00</p>
+              </div>
+              <div class="divideHours">
+                <p><strong>Domingos e Feriados:</strong></p>
+                <p>Fechado</p>
+              </div>
             </div>
-            <div class="divideHours">
-              <p><strong>Domingos e Feriados:</strong></p>
-              <p>Fechado</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <div class="icon">🍱</div>
-          <h3>Receitas</h3>
-          <p>Venha conhecer nossas receitas!</p>
-          <div class="delivery-buttons">
-            <a href="#" class="delivery-btn conhecer-receitas">Conhecer Receitas</a>
-            <a href="#" class="delivery-btn whatsapp">WhatsApp</a>
           </div>
         </div>
       </div>
@@ -60,7 +52,6 @@
 
 <style scoped>
 .location-section {
-  background: #0a0a0a;
   padding: 6rem 2rem;
 }
 
@@ -110,6 +101,10 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+}
+
+.hoursContainer {
+  width: 100%;
 }
 
 .info-card {

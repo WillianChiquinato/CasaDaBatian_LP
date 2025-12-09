@@ -183,6 +183,10 @@ const scrollToMenu = () => {
 }
 
 @media (max-width: 768px) {
+  .hero {
+    height: 82vh;
+  }
+  
   .hero-title {
     font-size: 2.5rem;
     letter-spacing: 4px;

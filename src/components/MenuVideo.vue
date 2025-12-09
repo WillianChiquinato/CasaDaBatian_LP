@@ -1,6 +1,5 @@
 <template>
   <section id="intro" class="menu-video-section">
-    <div class="menu-overlay"></div>
     <div class="menu-content">
       <h2 class="section-title">A mais de 50 anos nos Mercadão de Ribeirão Preto</h2>
       <p class="section-description">
@@ -19,30 +18,13 @@
           Seu navegador não suporta a tag de vídeo.
         </video>
       </div>
-      <div class="menu-categories">
-        <div class="category-card">
-          <h3>Sushi & Sashimi</h3>
-          <p>Peixes frescos preparados pelos nossos mestres sushimen</p>
-        </div>
-        <div class="category-card">
-          <h3>Hot Rolls</h3>
-          <p>Combinações únicas com toque especial</p>
-        </div>
-        <div class="category-card">
-          <h3>Pratos Quentes</h3>
-          <p>Yakisoba, Temaki e muito mais</p>
-        </div>
-        <div class="category-card">
-          <h3>Especiarias</h3>
-          <p>Molhos, temperos e acompanhamentos tradicionais</p>
-        </div>
-      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
 .menu-video-section {
+  background: #0a0a0a;
   position: relative;
   min-height: 100vh;
   display: flex;
@@ -100,54 +82,10 @@
   margin-right: auto;
 }
 
-.menu-categories {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-.category-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(220, 38, 38, 0.3);
-  padding: 2.5rem 2rem;
-  border-radius: 8px;
-  transition: all 0.3s;
-}
-
-.category-card:hover {
-  background: rgba(220, 38, 38, 0.1);
-  border-color: #dc2626;
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
-}
-
-.category-card h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #dc2626;
-  font-weight: 600;
-}
-
-.category-card p {
-  font-size: 1rem;
-  color: #d1d1d1;
-  line-height: 1.6;
-}
-
 @media (max-width: 768px) {
   .section-title {
     font-size: clamp(1.5rem, 5vw, 2rem);
     letter-spacing: 0.5px;
-  }
-  
-  .menu-categories {
-    grid-template-columns: 1fr;
-  }
-  
-  .menu-video-section {
-    padding: 4rem 1.5rem;
   }
 }
 </style>
