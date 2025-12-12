@@ -1,8 +1,5 @@
 <template>
   <section id="home" class="hero">
-    <!-- <video autoplay muted loop playsinline class="hero-video">
-      <source src="/videos/PlaceHolderVideoIntro.mp4" type="video/mp4">
-    </video> -->
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="logo-container">
@@ -19,28 +16,15 @@
 <style scoped>
 .hero {
   position: relative;
-  height: 85vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background-image: url('../assets/images/CapaHomePage.png');
   background-size: cover;
-  background-size: auto 160%;
-  background-position: center;
-}
-
-.hero-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  object-fit: cover;
+  background-size: auto 170%;
+  background-position: center center;
 }
 
 .hero-overlay {
@@ -71,7 +55,6 @@
   height: 100%;
 }
 
-
 .logo-container {
   animation: fadeInUp 1s ease-out;
 }
@@ -82,7 +65,7 @@
   width: 35%;
   height: auto;
   object-fit: contain;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   filter: drop-shadow(0 0 20px rgba(220, 38, 38, 0.5));
 }
 
@@ -98,7 +81,6 @@
 .hero-subtitle {
   font-size: 1.5rem;
   letter-spacing: 4px;
-  margin-bottom: 1.5rem;
   font-weight: 300;
   text-transform: uppercase;
 }
@@ -156,6 +138,11 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    height: 70vh;
+    background-size: auto 130%;
+  }
+
   .hero-title {
     font-size: 2.5rem;
     letter-spacing: 4px;
@@ -169,6 +156,7 @@
   .hero-logo {
     width: 250px;
     height: 250px;
+    margin-bottom: 0rem;
   }
 }
 </style>

@@ -2,6 +2,7 @@
   <header class="header">
     <div class="container">
       <div class="logo">
+        <img src="/public/Favicon.png" alt="Logo casa da batian header">
         <h1>CASA DA BATIAN</h1>
       </div>
       <nav class="nav">
@@ -152,12 +153,23 @@ const toggleModal = () => {
   align-items: center;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .logo h1 {
   color: #dc2626;
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 2px;
   margin: 0;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
 }
 
 .nav {
@@ -535,7 +547,7 @@ const toggleModal = () => {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .nav {
     display: none;
   }
