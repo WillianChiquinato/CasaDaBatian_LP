@@ -9,7 +9,6 @@
         <img src="../assets/images/Logo_Full_Escrito_Vermelho.png" alt="Casa da Batian Logo" class="hero-logo">
         <p class="hero-subtitle">Autêntica Produtos e Culinária Japonesa</p>
       </div>
-      <button class="cta-button" @click="scrollToMenu">Ver Exclusividades</button>
     </div>
     <div class="scroll-indicator">
       <span></span>
@@ -17,23 +16,17 @@
   </section>
 </template>
 
-<script setup lang="ts">
-const scrollToMenu = () => {
-  document.getElementById('pratos')?.scrollIntoView({ behavior: 'smooth' });
-};
-</script>
-
 <style scoped>
 .hero {
   position: relative;
-  height: 100vh;
+  height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background-image: url('../assets/images/CapaHomePage.png');
   background-size: cover;
-  background-size: auto 140%;
+  background-size: auto 160%;
   background-position: center;
 }
 
@@ -110,26 +103,6 @@ const scrollToMenu = () => {
   text-transform: uppercase;
 }
 
-.cta-button {
-  background: #af0101;
-  color: #fff;
-  border: 2px solid #ff4d4d;
-  padding: 1rem 3rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-transform: uppercase;
-}
-
-.cta-button:hover {
-  background: transparent;
-  border-color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
-}
-
 .scroll-indicator {
   position: absolute;
   bottom: 30px;
@@ -157,7 +130,7 @@ const scrollToMenu = () => {
   background: #dc2626;
   border-radius: 2px;
   transform: translateX(-50%);
-  animation: scroll 2s infinite;
+  animation: scroll 1s infinite;
 }
 
 @keyframes fadeInUp {
@@ -183,10 +156,6 @@ const scrollToMenu = () => {
 }
 
 @media (max-width: 768px) {
-  .hero {
-    height: 82vh;
-  }
-  
   .hero-title {
     font-size: 2.5rem;
     letter-spacing: 4px;
