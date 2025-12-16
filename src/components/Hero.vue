@@ -4,7 +4,6 @@
     <div class="hero-content">
       <div class="logo-container">
         <img src="../assets/images/Logo_Full_Escrito_Vermelho.png" alt="Casa da Batian Logo" class="hero-logo">
-        <p class="hero-subtitle">Autêntica Produtos e Culinária Japonesa</p>
       </div>
     </div>
     <div class="scroll-indicator">
@@ -16,14 +15,14 @@
 <style scoped>
 .hero {
   position: relative;
-  height: 80vh;
+  height: 56vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background-image: url('../assets/images/CapaHomePage.png');
   background-size: cover;
-  background-size: auto 170%;
+  background-size: auto 240%;
   background-position: center center;
 }
 
@@ -62,7 +61,7 @@
 .hero-logo {
   display: block;
   margin: 0 auto;
-  width: 35%;
+  width: 30%;
   height: auto;
   object-fit: contain;
   margin-bottom: 1rem;
@@ -139,8 +138,8 @@
 
 @media (max-width: 768px) {
   .hero {
-    height: 70vh;
-    background-size: auto 130%;
+    height: 42vh;
+    background-size: auto 155%;
   }
 
   .hero-title {

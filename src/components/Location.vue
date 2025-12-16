@@ -16,7 +16,9 @@
           <div class="info-card">
             <div class="icon">📍</div>
             <h3>Endereço</h3>
-            <p>Casa da Batian Produtos Orientais</p>
+            <p>Mercadão Central de Ribeirão Preto - Boxes 71 a 73</p>
+            <p>Restaurante Yakisoba - Boxes 74 e 75</p>
+            <p>Rua São Sebastião, número 130</p>
             <p>Ribeirão Preto - SP</p>
           </div>
 
@@ -33,14 +35,30 @@
             <h3>Horário de Funcionamento</h3>
             <div class="hours">
               <div class="divideHours">
-                <p><strong>Segunda a Sexta:</strong></p>
-                <p>07:00 - 18:00</p>
-                <p><strong>Sábados:</strong></p>
-                <p>07:00 - 16:00</p>
+                <div class="DeliveryHours">
+                  <p><strong>Segunda a Sexta:</strong></p>
+                  <p>08:00 - 18:00</p>
+
+                  <p><strong>Delivery:</strong></p>
+                  <p>08:00 - 17:30</p>
+                </div>
+
+                <div class="DeliveryHours">
+                  <p><strong>Sábados:</strong></p>
+                  <p>08:00 - 16:00</p>
+
+                  <p><strong>Delivery:</strong></p>
+                  <p>08:00 - 15:30</p>
+                </div>
               </div>
               <div class="divideHours">
-                <p><strong>Domingos e Feriados:</strong></p>
-                <p>Fechado</p>
+                <div class="DeliveryHours">
+                  <p><strong>Feriados:</strong></p>
+                  <p>08:00 - 14:00</p>
+
+                  <p><strong>Delivery:</strong></p>
+                  <p>08:00 - 13:00</p>
+                </div>
               </div>
             </div>
           </div>
@@ -190,6 +208,11 @@
 .delivery-btn.whatsapp:hover {
   background: #1fb855;
   transform: translateY(-2px);
+}
+
+.DeliveryHours {
+  margin-bottom: 1rem;
+  border-bottom: 1.5px solid #606060;
 }
 
 @media (max-width: 1024px) {

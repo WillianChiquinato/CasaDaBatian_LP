@@ -1,7 +1,7 @@
 <template>
   <section id="intro" class="menu-video-section">
     <div class="menu-content">
-      <h2 class="section-title">A mais de 50 anos nos Mercadão de Ribeirão Preto</h2>
+      <h2 class="section-title">A mais de 50 anos no Mercadão Central de Ribeirão Preto</h2>
       <p class="section-description">
         Experimente o melhor da culinária japonesa com ingredientes frescos e receitas autênticas
       </p>

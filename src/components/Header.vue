@@ -2,7 +2,6 @@
   <header class="header">
     <div class="container">
       <div class="logo">
-        <img src="/public/Favicon.png" alt="Logo casa da batian header">
         <h1>CASA DA BATIAN</h1>
       </div>
       <nav class="nav">

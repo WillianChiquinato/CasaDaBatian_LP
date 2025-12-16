@@ -32,16 +32,23 @@
           <div class="hours-list">
             <div class="hour-item">
               <span class="day">Segunda a Sexta</span>
-              <span class="time">07:00 - 12:30</span>
+              <span class="time">08:00 - 12:30</span>
               <span class="time">13:30 - 18:00</span>
+
+              <span class="day">Delivery</span>
+              <span class="time">08:00 - 17:30</span>
             </div>
             <div class="hour-item">
               <span class="day">Sábados</span>
-              <span class="time">07:00 - 16:00</span>
+              <span class="time">08:00 - 16:00</span>
+              <span class="day">Delivery</span>
+              <span class="time">08:00 - 15:30</span>
             </div>
             <div class="hour-item">
-              <span class="day">Domingos e Feriados</span>
-              <span class="time">Fechado</span>
+              <span class="day">Feriados</span>
+              <span class="time">08:00 - 14:00</span>
+              <span class="day">Delivery</span>
+              <span class="time">08:00 - 13:00</span>
             </div>
           </div>
         </div>
@@ -51,7 +58,7 @@
           <div class="contact-info">
             <p class="contact-item">
               <span class="icon">📍</span>
-              <span>Mercado Público Central<br>Ribeirão Preto - SP</span>
+              <span>Mercado Público Central<br>Restaurante Yakisoba - Boxes 74 e 75<br>Ribeirão Preto - SP</span>
             </p>
             <p class="contact-item">
               <span class="icon">📞</span>
