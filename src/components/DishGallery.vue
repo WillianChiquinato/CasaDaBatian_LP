@@ -4,10 +4,10 @@
       <h2 class="section-title">Cardápio</h2>
 
       <div class="gallery-grid">
-        <div v-for="(dish, index) in dishes" :key="index" class="dish-card" @mouseenter="hoveredCard = index"
-          @mouseleave="hoveredCard = null">
+        <button v-for="(dish, index) in dishes" :key="index" class="dish-card" @mouseenter="hoveredCard = index"
+          @mouseleave="hoveredCard = null" @click="OpenImage(dish)">
           <div class="dish-image-container">
-            <img :src="dish.image" :alt="dish.name" class="dish-image">
+            <img :src="dish.image" :alt="dish.name" class="dish-image" :style="{ scale: dish.tamanho }" />
             <div class="dish-overlay"></div>
           </div>
           <div class="dish-info">
@@ -15,10 +15,19 @@
             <p class="dish-description">{{ dish.description }}</p>
             <p class="dish-type">Tipo: {{ dish.type }}</p>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </section>
+
+  <div v-if="selectedDish" class="image-modal" @click="CloseImage">
+    <div class="image-modal-content" @click.stop>
+      <button class="close-btn" @click="CloseImage">✕</button>
+      <img :src="selectedDish.image" :alt="selectedDish.name" />
+      <h3>{{ selectedDish.name }}</h3>
+      <p>{{ selectedDish.description }}</p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -35,74 +44,102 @@ import hossoMaki from '../assets/images/HossomakideSalmao.png'
 import futomaki from '../assets/images/Futomaki.png'
 import comboCompleto from '../assets/images/ComboCompleto.png'
 
+interface Dish {
+  name: string;
+  description: string;
+  type: string;
+  image: string;
+  tamanho: number;
+}
+
 const hoveredCard = ref<number | null>(null);
+const selectedDish = ref<Dish | null>(null)
+
+function OpenImage(dish: any) {
+  selectedDish.value = dish
+}
+
+function CloseImage() {
+  selectedDish.value = null
+}
 
 const dishes = [
   {
     name: 'Yakisoba Tradicional',
     description: 'Macarrão oriental salteado com legumes frescos e proteína à sua escolha',
     type: 'Combo',
-    image: yakisoba
+    image: yakisoba,
+    tamanho: 1,
   },
   {
     name: 'Uramaki Filadélfia',
     description: 'Sushi invertido com salmão, cream cheese e gergelim tostado por fora',
     type: 'Sushi',
-    image: uramakiFiladelfia
+    image: uramakiFiladelfia,
+    tamanho: 1.1,
   },
   {
     name: 'Uramaki Califórnia',
     description: 'Sushi invertido com kani, abacate e pepino, coberto com gergelim',
     type: 'Sushi',
-    image: uramaki
+    image: uramaki,
+    tamanho: 1,
   },
   {
-    name: 'Temaki Salmão',
-    description: 'Cone de alga nori recheado com arroz, salmão fresco, cream cheese e cebolinha',
+    name: 'Oniguiri Variados',
+    description: 'Bolinhos de arroz recheados com atum, salmão',
     type: 'Sushi',
-    image: temaki
+    image: oniguiri,
+    tamanho: 1.4,
   },
   {
     name: 'Salada Sunomono',
     description: 'Salada refrescante de pepino com molho agridoce e gergelim',
     type: 'Salada',
-    image: salada
+    image: salada,
+    tamanho: 1.2,
   },
   {
-    name: 'Oniguiri Variados',
-    description: 'Bolinhos de arroz recheados com atum, salmão ou umeboshi',
+    name: 'Temaki Salmão',
+    description: 'Cone de alga nori recheado com arroz, salmão fresco, cream cheese e cebolinha',
     type: 'Sushi',
-    image: oniguiri
+    image: temaki,
+    tamanho: 1,
   },
   {
     name: 'Inari Sushi',
     description: 'Bolinho de arroz envolto em tofu frito adocicado',
     type: 'Sushi',
-    image: inariSushi
+    image: inariSushi,
+    tamanho: 1.1,
   },
   {
     name: 'Hot Roll Especial',
     description: 'Sushi frito recheado com salmão, cream cheese e cebolinha, servido com molho especial',
     type: 'Sushi',
-    image: hotRoll
+    image: hotRoll,
+    tamanho: 1,
   },
   {
     name: 'Hosso Maki de Salmão',
     description: 'Sushi tradicional com alga nori, arroz e salmão fresco',
     type: 'Sushi',
-    image: hossoMaki
+    image: hossoMaki,
+    tamanho: 1.05,
   },
   {
     name: 'Futomaki Vegano',
     description: 'Sushi grosso recheado com legumes variados e abacate',
     type: 'Sushi',
-    image: futomaki
+    image: futomaki,
+    tamanho: 1.3,
   },
   {
     name: 'Combo Completo',
     description: 'Combinado com variedade de sushis e Rolls para duas pessoas',
     type: 'Combo',
-    image: comboCompleto
+    image: comboCompleto,
+    tamanho: 1.3,
   }
 ];
 </script>
@@ -189,6 +226,10 @@ const dishes = [
   padding: 1rem;
 }
 
+.dish-card:hover .dish-image {
+  transform: scale(1.1);
+}
+
 @keyframes subtle-shift {
 
   0%,
@@ -199,10 +240,6 @@ const dishes = [
   50% {
     background-position: 100% 50%;
   }
-}
-
-.dish-card:hover .dish-image {
-  transform: scale(1.1);
 }
 
 .dish-overlay {
@@ -279,6 +316,57 @@ const dishes = [
 .ticket-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+}
+
+.image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  animation: zoomIn 0.3s ease;
+  text-align: center;
+  color: white;
+}
+
+.image-modal-content img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.close-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: black;
+  color: white;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 960px) {

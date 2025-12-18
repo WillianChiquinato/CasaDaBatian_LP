@@ -6,14 +6,7 @@
         Experimente o melhor da culinária japonesa com ingredientes frescos e receitas autênticas
       </p>
       <div class="video">
-        <video 
-          class="menu-video" 
-          autoplay 
-          muted 
-          loop 
-          playsinline
-          controls
-        >
+        <video class="menu-video" autoplay muted loop playsinline controls>
           <source src="/videos/PlaceHolderVideoIntro.mp4" type="video/mp4">
           Seu navegador não suporta a tag de vídeo.
         </video>
@@ -31,7 +24,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 6rem 2rem;
+  padding: 12rem 2rem 6rem 2rem;
 }
 
 .video {
@@ -86,6 +79,10 @@
   .section-title {
     font-size: clamp(1.5rem, 5vw, 2rem);
     letter-spacing: 0.5px;
+  }
+
+  .menu-video-section {
+    padding: 6rem 2rem 3rem 2rem;
   }
 }
 </style>

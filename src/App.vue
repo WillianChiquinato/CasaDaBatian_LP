@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <Hero />
+    <Homepage />
     <MenuVideo />
     <Location />
     <DishGallery />
@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import Header from './components/Header.vue';
 import FloatingSupport from './components/FloatingSupport.vue';
-import Hero from './components/Hero.vue';
+import Homepage from './components/HomePage.vue';
 import MenuVideo from './components/MenuVideo.vue';
 import DishGallery from './components/DishGallery.vue';
 import Instagram from './components/Instagram.vue';

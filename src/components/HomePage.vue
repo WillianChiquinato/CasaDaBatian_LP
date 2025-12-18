@@ -15,14 +15,14 @@
 <style scoped>
 .hero {
   position: relative;
-  height: 56vh;
+  height: 35vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   background-image: url('../assets/images/CapaHomePage.png');
   background-size: cover;
-  background-size: auto 240%;
+  background-size: auto 390%;
   background-position: center center;
 }
 
@@ -46,7 +46,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   text-align: center;
   color: #fff;
   padding: 1rem;
@@ -56,6 +56,8 @@
 
 .logo-container {
   animation: fadeInUp 1s ease-out;
+  position: relative;
+  margin-bottom: -12vh;
 }
 
 .hero-logo {
@@ -64,7 +66,6 @@
   width: 30%;
   height: auto;
   object-fit: contain;
-  margin-bottom: 1rem;
   filter: drop-shadow(0 0 20px rgba(220, 38, 38, 0.5));
 }
 
@@ -138,8 +139,8 @@
 
 @media (max-width: 768px) {
   .hero {
-    height: 42vh;
-    background-size: auto 155%;
+    height: 27vh;
+    background-size: auto 270%;
   }
 
   .hero-title {
@@ -154,8 +155,11 @@
   
   .hero-logo {
     width: 250px;
-    height: 250px;
-    margin-bottom: 0rem;
+    height: auto;
+  }
+  
+  .logo-container {
+    margin-bottom: -10vh;
   }
 }
 </style>
